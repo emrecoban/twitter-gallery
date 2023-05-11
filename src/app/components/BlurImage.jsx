@@ -7,10 +7,10 @@ function cn(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function BlurImage({ text, imgURL }) {
+export default function BlurImage({ userName, id, text, imgURL }) {
     const [isLoading, setLoading] = useState(true)
     return (
-        <a href="" className="group block">
+        <a href={`https://twitter.com/${userName}/status/${id}`} className="group block" target="_blank">
             <div className="w-full aspect-square bg-gray-200 rounded-lg overflow-hidden relative border border-slate-200">
                 <Image
                     alt=""
