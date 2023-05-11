@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Header() {
     return (
-        <div className="flex mb-16">
+        <div className="flex mb-6">
             <div className="w-full flex flex-row items-center justify-between">
                 <div className="flex flex-row items-center gap-x-1">
                     <Image src="/twitter.svg" width="24" height="24" alt="twitter" />
