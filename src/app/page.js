@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useTransition } from "react";
+import { useState, useEffect } from "react";
 import { makeMedia } from "./_actions";
 import BlurImage from "./components/BlurImage";
 import Header from "./components/Header";
@@ -16,18 +16,22 @@ export default function TwitterGallery() {
     e.preventDefault()
     setSpinner(true)
     setResult([])
-    const result = await makeMedia(userName)
-    setResult(result)
+    try {
+      const result = await makeMedia(userName)
+      setResult(result)
+    } catch (error) {
+      console.log("gelen hata=> ", error)
+    } finally {
+      setSpinner(false)
+    }
   }
 
   useEffect(() => {
-    setMediaTweets(null)
     const mediaTweetsEl = result.map((tweet) => {
       return <BlurImage key={tweet.media.media_key} userName={userName} id={tweet.id} text={tweet.text} imgURL={tweet.media.url} />
     })
     setMediaTweets(mediaTweetsEl)
-    setSpinner(false)
-    console.log("gelen => ", mediaTweets)
+    console.log("gelen => ", result)
   }, [result])
 
   return (
@@ -69,19 +73,24 @@ export default function TwitterGallery() {
 
       </form>
 
-      <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5">
-        {spinner ? (
-          <>
-            <LoadingSkeleton />
-            <LoadingSkeleton />
-            <LoadingSkeleton />
-            <LoadingSkeleton />
-            <LoadingSkeleton />
-          </>
-        ) : (
-          mediaTweets
-        )}
-      </div>
+
+      {spinner ? (
+        <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5">
+          <LoadingSkeleton />
+          <LoadingSkeleton />
+          <LoadingSkeleton />
+          <LoadingSkeleton />
+          <LoadingSkeleton />
+        </div>
+      ) : (
+        result.length === 0 ? (<div className="flex flex-row justify-center">
+          <h1 className="text-slate-500">Oops! I couldn&apos;t find this gallery.</h1>
+        </div>) : (
+          <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5">
+            {mediaTweets}
+          </div>
+        )
+      )}
     </div>
   )
 }
