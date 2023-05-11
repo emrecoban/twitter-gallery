@@ -7,14 +7,14 @@ function cn(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function BlurImage() {
+export default function BlurImage({ text, imgURL }) {
     const [isLoading, setLoading] = useState(true)
     return (
         <a href="" className="group block">
-            <div className="w-full aspect-square bg-gray-200 rounded-lg overflow-hidden relative">
+            <div className="w-full aspect-square bg-gray-200 rounded-lg overflow-hidden relative border border-slate-200">
                 <Image
                     alt=""
-                    src="https://bit.ly/placeholder-img"
+                    src={imgURL}
                     fill={true}
                     className={cn(
                         'hover:opacity-75 object-cover',
@@ -25,7 +25,7 @@ export default function BlurImage() {
                     onLoadingComplete={() => setLoading(false)}
                 />
             </div>
-            <p className="mx-2 mt-4 text-sm text-gray-500">içerik bilgisi...</p>
+            <p className="mx-2 mt-4 text-sm text-gray-500" dangerouslySetInnerHTML={{ __html: text }}></p>
         </a>
     )
 }
