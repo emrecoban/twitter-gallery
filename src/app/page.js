@@ -10,20 +10,24 @@ export default function TwitterGallery() {
   const [result, setResult] = useState([])
   const [mediaTweets, setMediaTweets] = useState(null)
   const [spinner, setSpinner] = useState(false)
+  const [userName, setUserName] = useState("")
 
   const handleForm = async (e) => {
     e.preventDefault()
     setSpinner(true)
-    const result = await makeMedia("emreshepherd")
+    setResult([])
+    const result = await makeMedia(userName)
     setResult(result)
   }
 
   useEffect(() => {
+    setMediaTweets(null)
     const mediaTweetsEl = result.map((tweet) => {
-      return <BlurImage key={tweet.id} userName="emreshepherd" id={tweet.id} text={tweet.text} imgURL={tweet.media.url} />
+      return <BlurImage key={tweet.media.media_key} userName={userName} id={tweet.id} text={tweet.text} imgURL={tweet.media.url} />
     })
     setMediaTweets(mediaTweetsEl)
     setSpinner(false)
+    console.log("gelen => ", mediaTweets)
   }, [result])
 
   return (
@@ -57,6 +61,8 @@ export default function TwitterGallery() {
               minLength="1"
               maxLength="15"
               autoComplete="off"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
             />
           </div>
         </div>
@@ -64,7 +70,17 @@ export default function TwitterGallery() {
       </form>
 
       <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5">
-        <LoadingSkeleton />
+        {spinner ? (
+          <>
+            <LoadingSkeleton />
+            <LoadingSkeleton />
+            <LoadingSkeleton />
+            <LoadingSkeleton />
+            <LoadingSkeleton />
+          </>
+        ) : (
+          mediaTweets
+        )}
       </div>
     </div>
   )
