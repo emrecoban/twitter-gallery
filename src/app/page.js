@@ -1,11 +1,13 @@
 import { Client } from "twitter-api-sdk";
 import BlurImage from "./components/BlurImage";
-import Image from "next/image";
+import Header from "./components/Header";
+
 
 const client = new Client(process.env.BEARER_TOKEN);
 
 export default async function TwitterGallery() {
-  const userId = await client.users.findUserByUsername("emreshepherd")
+  const userName = "emreshepherd"
+  const userId = await client.users.findUserByUsername(userName)
   const tweets = await client.tweets.usersIdTweets(userId.data.id, {
     max_results: 50,
     exclude: "retweets",
@@ -40,23 +42,12 @@ export default async function TwitterGallery() {
   }, []);
 
   const mediaTweets = result.map((tweet) => {
-    return <BlurImage key={tweet.id} text={tweet.text} imgURL={tweet.media.url} />
+    return <BlurImage key={tweet.id} userName={userName} id={tweet.id} text={tweet.text} imgURL={tweet.media.url} />
   })
 
   return (
     <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-      <div className="flex mb-16">
-        <div className="w-full flex flex-row items-center justify-between">
-          <div className="flex flex-row items-center gap-x-1">
-            <Image src="/twitter.svg" width="24" height="24" alt="logo" />
-            <Image src="/gallery.svg" width="24" height="24" alt="logo" />
-            <h1 className="text-lg text-slate-800">Twitter Gallery</h1>
-          </div>
-          <div className="">
-            selam
-          </div>
-        </div>
-      </div>
+      <Header />
       <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5">
         {mediaTweets}
       </div>
