@@ -3,12 +3,16 @@
 import { Client } from "twitter-api-sdk";
 const client = new Client(process.env.BEARER_TOKEN);
 
-export async function makeMedia(userName) {
-    const userId = await client.users.findUserByUsername(userName)
-    if (!userId.data) {
-        if (userId.errors[0]?.title) throw new Error("User not found.")
+export async function getUser(userName) {
+    const user = await client.users.findUserByUsername(userName)
+    if (!user.data) {
+        if (user.errors[0]?.title) throw new Error("User not found.")
     }
-    const tweets = await client.tweets.usersIdTweets(userId.data.id, {
+    return user
+}
+
+export async function getMedia(userId) {
+    const tweets = await client.tweets.usersIdTweets(userId, {
         max_results: 100,
         exclude: "retweets",
         expansions: "attachments.media_keys",

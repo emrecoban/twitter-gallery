@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from "react";
-import { makeMedia } from "./_actions";
+import { getUser, getMedia } from "./_actions";
 import BlurImage from "./components/BlurImage";
 import Header from "./components/Header";
 import LoadingSkeleton from "./components/LoadingSkeleton";
