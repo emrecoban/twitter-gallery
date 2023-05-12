@@ -5,16 +5,13 @@ const client = new Client(process.env.BEARER_TOKEN);
 
 export async function makeMedia(userName) {
     const userId = await client.users.findUserByUsername(userName)
+    if (userId.errors[0]?.title) throw new Error("User not found.")
     const tweets = await client.tweets.usersIdTweets(userId.data.id, {
         max_results: 100,
         exclude: "retweets",
         expansions: "attachments.media_keys",
         "media.fields": "url,preview_image_url",
     })
-
-    /*   const eleman = tweets.data.map(item => {
-        return (<p key={item.id} className="p-3 m-2 border border-slate-300 rounded-lg">{JSON.stringify(item, 2, null)}</p>)
-      }) */
 
     const result = tweets.data.reduce((accumulator, item) => {
         if (item.attachments && item.attachments.media_keys) {
