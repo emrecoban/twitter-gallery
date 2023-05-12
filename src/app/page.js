@@ -1,13 +1,15 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getUser, getMedia } from "./_actions";
 import BlurImage from "./components/BlurImage";
 import Header from "./components/Header";
 import LoadingSkeleton from "./components/LoadingSkeleton";
 import Image from "next/image";
+import autoAnimate from '@formkit/auto-animate'
 
 export default function TwitterGallery() {
+  const autoParent = useRef(null)
   const [mainresult, setMainresult] = useState([])
   const [result, setResult] = useState([])
   const [mediaTweets, setMediaTweets] = useState(null)
@@ -47,6 +49,7 @@ export default function TwitterGallery() {
   }, [result])
 
   useEffect(() => {
+    autoAnimate(autoParent.current)
     setResult(() => {
       const filteredGallery = mainresult.filter(tweet => tweet.text.toLowerCase().includes(search.toLowerCase()));
       return filteredGallery;
@@ -54,7 +57,7 @@ export default function TwitterGallery() {
   }, [search])
 
   return (
-    <div className="mx-auto max-w-5xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div className="mx-auto max-w-5xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8" ref={autoParent}>
       <Header />
       {search.length === 0 && (
         <form onSubmit={handleForm}>
