@@ -8,6 +8,7 @@ import LoadingSkeleton from "./components/LoadingSkeleton";
 import Image from "next/image";
 
 export default function TwitterGallery() {
+  const [mainresult, setMainresult] = useState([])
   const [result, setResult] = useState([])
   const [mediaTweets, setMediaTweets] = useState(null)
   const [spinner, setSpinner] = useState(false)
@@ -21,10 +22,12 @@ export default function TwitterGallery() {
     setSpinner(true)
     !err && setErr(true)
     setResult([])
+    setMainresult([])
     try {
       const account = await getUser(userName)
       const result = await getMedia(account.data.id)
       setResult(result)
+      setMainresult(result)
       setAcc(account)
     } catch (error) {
       setErr(error.message)
@@ -42,6 +45,15 @@ export default function TwitterGallery() {
       setMediaTweets(mediaTweetsEl)
     }
   }, [result])
+
+  useEffect(() => {
+    console.log("search değişti => ", search)
+    console.log("search değişti => ", result)
+    setResult(gallery => {
+      const filteredGallery = mainresult.filter(tweet => tweet.text.toLowerCase().includes(search.toLowerCase()));
+      return filteredGallery;
+    });
+  }, [search])
 
   return (
     <div className="mx-auto max-w-5xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -84,7 +96,7 @@ export default function TwitterGallery() {
         </form>
       )}
 
-      {(!spinner && result.length != 0) && (
+      {(!spinner && mainresult.length != 0) && (
         <div className="flex flex-row bg-slate-50 border border-slate-100 shadow-sm rounded-md mb-4 p-3 items-center gap-x-3">
           <div className="flex flex-row items-center gap-x-2">
             <Image src={acc.data?.profile_image_url} width="48" height="48" alt="user_image" className="rounded-full" />
