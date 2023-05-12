@@ -22,6 +22,7 @@ export default function TwitterGallery() {
       const result = await makeMedia(userName)
       setResult(result)
     } catch (error) {
+      setErr(error.message)
       console.log("Error from Twitter Gallery: ", error.message)
     } finally {
       setSpinner(false)
@@ -89,7 +90,7 @@ export default function TwitterGallery() {
         </div>
       ) : (
         result.length === 0 ? err && (<div className="flex flex-row justify-center">
-          <h1 className="text-slate-500">Oops! I couldn&apos;t find this gallery.</h1>
+          <h1 className="text-slate-500">Oops! I couldn&apos;t find this gallery. [{err}]</h1>
         </div>) : (
           <div className="grid grid-cols-2 gap-y-6 gap-x-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5 2xl:gap-x-4">
             {mediaTweets}
