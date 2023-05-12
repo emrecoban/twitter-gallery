@@ -10,32 +10,36 @@ export default function TwitterGallery() {
   const [result, setResult] = useState([])
   const [mediaTweets, setMediaTweets] = useState(null)
   const [spinner, setSpinner] = useState(false)
+  const [err, setErr] = useState(false)
   const [userName, setUserName] = useState("")
 
   const handleForm = async (e) => {
     e.preventDefault()
     setSpinner(true)
+    !err && setErr(true)
     setResult([])
     try {
       const result = await makeMedia(userName)
       setResult(result)
     } catch (error) {
-      console.log("gelen hata=> ", error)
+      console.log("Error from Twitter Gallery: ", error.message)
     } finally {
       setSpinner(false)
     }
   }
 
   useEffect(() => {
-    const mediaTweetsEl = result.map((tweet) => {
-      return <BlurImage key={tweet.media.media_key} userName={userName} id={tweet.id} text={tweet.text} imgURL={tweet.media.url} />
-    })
-    setMediaTweets(mediaTweetsEl)
-    console.log("gelen => ", result)
+    if (result.length != 0) {
+      const mediaTweetsEl = result.map((tweet) => {
+        return <BlurImage key={tweet.media.media_key} userName={userName} id={tweet.id} text={tweet.text} imgURL={tweet.media.url} />
+      })
+      setMediaTweets(mediaTweetsEl)
+      console.log("gelen => ", result)
+    }
   }, [result])
 
   return (
-    <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div className="mx-auto max-w-5xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
       <Header />
 
       <form onSubmit={handleForm}>
@@ -65,17 +69,18 @@ export default function TwitterGallery() {
               minLength="1"
               maxLength="15"
               autoComplete="off"
+              pattern="^[A-Za-z0-9_]{1,15}$"
+              title="A username can only contain alphanumeric characters (letters A-Z, numbers 0-9) with the exception of underscores"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
             />
           </div>
         </div>
-
       </form>
 
 
       {spinner ? (
-        <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5">
+        <div className="grid grid-cols-2 gap-y-6 gap-x-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5 2xl:gap-x-4">
           <LoadingSkeleton />
           <LoadingSkeleton />
           <LoadingSkeleton />
@@ -83,10 +88,10 @@ export default function TwitterGallery() {
           <LoadingSkeleton />
         </div>
       ) : (
-        result.length === 0 ? (<div className="flex flex-row justify-center">
+        result.length === 0 ? err && (<div className="flex flex-row justify-center">
           <h1 className="text-slate-500">Oops! I couldn&apos;t find this gallery.</h1>
         </div>) : (
-          <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5">
+          <div className="grid grid-cols-2 gap-y-6 gap-x-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5 2xl:gap-x-4">
             {mediaTweets}
           </div>
         )
