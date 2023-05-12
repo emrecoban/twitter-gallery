@@ -5,6 +5,7 @@ import { makeMedia } from "./_actions";
 import BlurImage from "./components/BlurImage";
 import Header from "./components/Header";
 import LoadingSkeleton from "./components/LoadingSkeleton";
+import Image from "next/image";
 
 export default function TwitterGallery() {
   const [result, setResult] = useState([])
@@ -79,6 +80,9 @@ export default function TwitterGallery() {
         </div>
       </form>
 
+      <div className="flex flex-row bg-slate-200 border border-slate-300 shadow rounded-md">
+        <Image src="https://twitter.com/emreshepherd/photo" width="100" height="100" alt="user_image" />
+      </div>
 
       {spinner ? (
         <div className="grid grid-cols-2 gap-y-6 gap-x-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5 2xl:gap-x-4">
@@ -90,7 +94,7 @@ export default function TwitterGallery() {
         </div>
       ) : (
         result.length === 0 ? err && (<div className="flex flex-row justify-center">
-          <h1 className="text-slate-500">Oops! I couldn&apos;t find this gallery. [{err}]</h1>
+          <h1 className="text-slate-500 text-center">Oops! I couldn&apos;t find this gallery.<br /> {err}</h1>
         </div>) : (
           <div className="grid grid-cols-2 gap-y-6 gap-x-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5 2xl:gap-x-4">
             {mediaTweets}

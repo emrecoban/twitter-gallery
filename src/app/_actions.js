@@ -5,7 +5,6 @@ const client = new Client(process.env.BEARER_TOKEN);
 
 export async function makeMedia(userName) {
     const userId = await client.users.findUserByUsername(userName)
-    console.log("USER => ", userId)
     if (!userId.data) {
         if (userId.errors[0]?.title) throw new Error("User not found.")
     }
