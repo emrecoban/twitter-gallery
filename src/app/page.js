@@ -47,9 +47,7 @@ export default function TwitterGallery() {
   }, [result])
 
   useEffect(() => {
-    console.log("search değişti => ", search)
-    console.log("search değişti => ", result)
-    setResult(gallery => {
+    setResult(() => {
       const filteredGallery = mainresult.filter(tweet => tweet.text.toLowerCase().includes(search.toLowerCase()));
       return filteredGallery;
     });
