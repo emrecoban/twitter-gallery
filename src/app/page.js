@@ -13,6 +13,8 @@ export default function TwitterGallery() {
   const [spinner, setSpinner] = useState(false)
   const [err, setErr] = useState(false)
   const [userName, setUserName] = useState("")
+  const [acc, setAcc] = useState(false)
+  const [search, setSearch] = useState("")
 
   const handleForm = async (e) => {
     e.preventDefault()
@@ -20,8 +22,10 @@ export default function TwitterGallery() {
     !err && setErr(true)
     setResult([])
     try {
-      const result = await makeMedia(userName)
+      const account = await getUser(userName)
+      const result = await getMedia(account.data.id)
       setResult(result)
+      setAcc(account)
     } catch (error) {
       setErr(error.message)
       console.log("Error from Twitter Gallery: ", error.message)
@@ -36,7 +40,6 @@ export default function TwitterGallery() {
         return <BlurImage key={tweet.media.media_key} userName={userName} id={tweet.id} text={tweet.text} imgURL={tweet.media.url} />
       })
       setMediaTweets(mediaTweetsEl)
-      console.log("gelen => ", result)
     }
   }, [result])
 
@@ -45,7 +48,7 @@ export default function TwitterGallery() {
       <Header />
 
       <form onSubmit={handleForm}>
-        <div className="max-w-md mx-auto mb-7">
+        <div className="max-w-md mx-auto mb-4">
           <div className="relative flex items-center w-full h-12 rounded-xl focus-within:shadow-lg bg-white overflow-hidden border border-slate-100">
             <div className="grid place-items-center h-full w-12 text-gray-300">
               <svg
@@ -80,8 +83,42 @@ export default function TwitterGallery() {
         </div>
       </form>
 
-      <div className="flex flex-row bg-slate-200 border border-slate-300 shadow rounded-md">
-        <Image src="https://twitter.com/emreshepherd/photo" width="100" height="100" alt="user_image" />
+      <div className="flex flex-row bg-slate-50 border border-slate-100 shadow-sm rounded-md mb-4 p-3 items-center gap-x-3">
+        <div className="flex flex-row items-center gap-x-2">
+          <Image src={acc.data?.profile_image_url} width="48" height="48" alt="user_image" className="rounded-full" />
+          <h3>{acc.data?.name}</h3>
+        </div>
+        <div className="w-full flex-1">
+          <div className="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-sm bg-white overflow-hidden border border-slate-100">
+            <div className="grid place-items-center h-full w-12 text-gray-300">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+            <input
+              className="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
+              type="text"
+              name="search"
+              placeholder="Type something to filter the gallery..."
+              minLength="1"
+              maxLength="25"
+              autoComplete="off"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+        </div>
       </div>
 
       {spinner ? (

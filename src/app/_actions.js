@@ -4,7 +4,9 @@ import { Client } from "twitter-api-sdk";
 const client = new Client(process.env.BEARER_TOKEN);
 
 export async function getUser(userName) {
-    const user = await client.users.findUserByUsername(userName)
+    const user = await client.users.findUserByUsername(userName, {
+        "user.fields": "profile_image_url",
+    })
     if (!user.data) {
         if (user.errors[0]?.title) throw new Error("User not found.")
     }
