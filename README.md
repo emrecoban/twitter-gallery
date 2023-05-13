@@ -30,7 +30,39 @@ With my app, you can effortlessly discover and filter media files shared by Twit
 
 ## Installation
 
-- Coming soon! (Don't forget .env file.)
+1. Clone the repository to your local machine:
+
+```bash
+  git clone https://github.com/emrecoban/twitter-gallery.git
+```
+
+2. Navigate to the project directory:
+
+```bash
+  cd twitter-gallery
+```
+
+3. Install the dependencies using `npm`:
+
+```bash
+  npm install
+```
+
+4. Don't forget to configure `.env` file. Get your [Twitter API Token](https://developer.twitter.com/en/portal/dashboard):
+
+```bash
+BEARER_TOKEN="{YOUR API TOKEN}"
+```
+
+5. Start the development server:
+
+```bash
+  npm run dev
+```
+
+6. Open your web browser and go to [http://localhost:3000](http://localhost:3000) to view the application.
+
+That's it! You should now have the project running locally on your machine. If you encounter any issues, be sure to check the project's documentation and issue tracker on GitHub.
 
 ## Contributing
 
