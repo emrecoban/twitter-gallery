@@ -11,6 +11,7 @@ import autoAnimate from '@formkit/auto-animate'
 export default function TwitterGallery() {
   const autoParent = useRef(null)
   const autoGrid = useRef(null)
+  const searchBox = useRef(null)
   const [mainresult, setMainresult] = useState([])
   const [result, setResult] = useState([])
   const [mediaTweets, setMediaTweets] = useState(null)
@@ -22,6 +23,7 @@ export default function TwitterGallery() {
 
   const handleForm = async (e) => {
     e.preventDefault()
+    searchBox.current && searchBox.current.blur()
     setSpinner(true)
     !err && setErr(true)
     setResult([])
@@ -91,6 +93,7 @@ export default function TwitterGallery() {
                 autoComplete="off"
                 pattern="^[A-Za-z0-9_]{1,15}$"
                 title="A username can only contain alphanumeric characters (letters A-Z, numbers 0-9) with the exception of underscores"
+                ref={searchBox}
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
               />
