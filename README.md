@@ -16,7 +16,7 @@ With my app, you can effortlessly discover and filter media files shared by Twit
 
 ## Screenshots
 
-Coming soon!
+![search-result-for-shouldhavecat](/github_assets/ss1.png)
 
 ## Built with
 
@@ -25,6 +25,7 @@ Coming soon!
 - React
 - Next.js
 - [Twitter API SDK](https://github.com/twitterdev/twitter-api-typescript-sdk)
+- [AutoAnimate](https://github.com/formkit/auto-animate)
 
 ## Installation
 
