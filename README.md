@@ -94,7 +94,9 @@ Bug reports, feature requests, and pull requests are welcome. This project is in
 
 ## Support
 
+- Sponsor to me on GitHub.
 - Give a star to this repo.
+- Upvote on [ProductHunt](https://www.producthunt.com/posts/twitter-gallery-2).
 - Follow me on Twitter [@emreshepherd](https://twitter.com/emreshepherd), or GitHub [@emrecoban](https://github.com/emrecoban).
 - Buy me a coffee, or book: https://www.buymeacoffee.com/emrecoban
 
