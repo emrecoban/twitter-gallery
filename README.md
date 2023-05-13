@@ -44,6 +44,10 @@ Bug reports, feature requests, and pull requests are welcome. This project is in
 
 - Coming soon!
 
+## Changelog
+
+- **[v1.0](https://github.com/emrecoban/twitter-gallery/releases/tag/v1.0):** The first version was born!
+
 ## License
 
 The Twitter Gallery is available as open source under the terms of the [MIT License](https://github.com/emrecoban/twitter-gallery/blob/main/LICENSE).
