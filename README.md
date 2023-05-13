@@ -76,7 +76,10 @@ Bug reports, feature requests, and pull requests are welcome. This project is in
 
 ## References
 
-- Coming soon!
+- [Users Lookup - Twitter Developer Platform](https://developer.twitter.com/en/docs/twitter-api/users/lookup/introduction)
+- [Timelines - Twitter Developer Platform](https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/introduction)
+- [Official TS/JS SDK for the Twitter API v2](https://github.com/twitterdev/twitter-api-typescript-sdk)
+- [Image Gallery with Next.js](https://github.com/leerob/image-gallery-supabase-tailwind-nextjs)
 
 ## Changelog
 
