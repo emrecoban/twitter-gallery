@@ -10,6 +10,7 @@ import autoAnimate from '@formkit/auto-animate'
 
 export default function TwitterGallery() {
   const autoParent = useRef(null)
+  const autoGrid = useRef(null)
   const [mainresult, setMainresult] = useState([])
   const [result, setResult] = useState([])
   const [mediaTweets, setMediaTweets] = useState(null)
@@ -50,6 +51,7 @@ export default function TwitterGallery() {
 
   useEffect(() => {
     autoAnimate(autoParent.current)
+    autoGrid.current && autoAnimate(autoGrid.current)
     setResult(() => {
       const filteredGallery = mainresult.filter(tweet => tweet.text.toLowerCase().includes(search.toLowerCase()));
       return filteredGallery;
@@ -149,7 +151,7 @@ export default function TwitterGallery() {
         result.length === 0 ? err && (<div className="flex flex-row justify-center">
           <h1 className="text-slate-500 text-center">Oops! I couldn&apos;t find this gallery.<br /> {err}</h1>
         </div>) : (
-          <div className="grid grid-cols-2 gap-y-6 gap-x-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5 2xl:gap-x-4">
+          <div className="grid grid-cols-2 gap-y-6 gap-x-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5 2xl:gap-x-4" ref={autoGrid}>
             {mediaTweets}
           </div>
         )
