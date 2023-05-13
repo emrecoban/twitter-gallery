@@ -19,6 +19,30 @@ With my app, you can effortlessly discover and filter media files shared by Twit
 ![search-result-for-shouldhavecat](/github_assets/ss1.png)
 ![filter-result-for-changeinvolume](/github_assets/ss2.png)
 
+## Directory Structure
+
+```bash
+├── public
+│   ├── gallery.svg
+│   ├── github.svg
+│   ├── placeholder.jpeg
+│   └── twitter.svg
+├── src
+│   └── app
+│       ├── components
+│       │   ├── BlurImage.jsx
+│       │   ├── Header.jsx
+│       │   └── LoadingSkeleton.jsx
+│       ├── _actions.js
+│       ├── layout.js
+│       ├── page.js
+│       ├── globals.css
+│       └── icon.svg
+├── next.config.js
+├── tailwind.config.js
+└── README.md
+```
+
 ## Built with
 
 - JavaScript
