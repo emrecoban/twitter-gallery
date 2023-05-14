@@ -10,7 +10,7 @@ export default function Header() {
                     <h1 className="text-lg text-slate-800">Twitter Gallery</h1>
                 </div>
                 <div className="text-xs md:text-sm text-slate-500">
-                    Crafted by <a href="https://github.com/emrecoban" target="_blank" className="hover:text-slate-700 hover:underline-offset-4 hover:underline"><Image src="/github.svg" width="19" height="19" alt="github" className="inline-block" /> emrecoban</a>
+                    Crafted by <a href="https://github.com/emrecoban/twitter-gallery" target="_blank" className="hover:text-slate-700 hover:underline-offset-4 hover:underline"><Image src="/github.svg" width="19" height="19" alt="github" className="inline-block" /> emrecoban</a>
                 </div>
             </div>
         </div>
