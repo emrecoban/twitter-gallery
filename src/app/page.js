@@ -34,6 +34,7 @@ export default function TwitterGallery() {
       setResult(result)
       setMainresult(result)
       setAcc(account)
+      setErr(true) // remvoed old error messages
     } catch (error) {
       setErr(error.message)
       console.log("Error from Twitter Gallery: ", error.message)
@@ -151,8 +152,9 @@ export default function TwitterGallery() {
           <LoadingSkeleton />
         </div>
       ) : (
-        result.length === 0 ? err && (<div className="flex flex-row justify-center">
+        result.length === 0 ? err && (<div className="flex flex-col items-center justify-center">
           <h1 className="text-slate-500 text-center">Oops! I couldn&apos;t find this gallery.<br /> {err}</h1>
+          <a href="https://github.com/emrecoban/twitter-gallery/issues/new" target="_blank" className="hover:text-blue-600">Create a new issue</a>
         </div>) : (
           <>
             <div className="grid grid-cols-2 gap-y-6 gap-x-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5 2xl:gap-x-4" ref={autoGrid}>
