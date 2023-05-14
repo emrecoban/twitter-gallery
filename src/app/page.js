@@ -144,7 +144,7 @@ export default function TwitterGallery() {
       )}
 
       {spinner ? (
-        <div className="grid grid-cols-2 gap-y-6 gap-x-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5 2xl:gap-x-4">
+        <div className="grid grid-cols-2 gap-y-6 gap-x-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:grid-cols-5 2xl:gap-x-4 mt-2">
           <LoadingSkeleton />
           <LoadingSkeleton />
           <LoadingSkeleton />

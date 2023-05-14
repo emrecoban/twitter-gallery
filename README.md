@@ -1,6 +1,8 @@
-# Twitter Gallery
+<h1 align="center"><img src="public/twitter.svg" height="60" align="center" /><br />Twitter Gallery</h1>
 
 Twitter Gallery is an **open-source** MIT-licensed [Next.js](https://github.com/vercel/next.js) application that allows you to easily browse and filter media files from Twitter users.
+
+Try it: [twittergallery.vercel.app](https://twittergallery.vercel.app)
 
 ## The Problem
 
