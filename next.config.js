@@ -1,7 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['pbs.twimg.com', 'twitter.com'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: '**.twimg.com',
+            },
+            {
+                protocol: 'https',
+                hostname: '**.twitter.com',
+            },
+        ],
     }
 }
 
