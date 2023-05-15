@@ -61,8 +61,6 @@ export default function TwitterGallery() {
     });
   }, [search])
 
-  console.log("ROOT rendered")
-
   return (
     <div className="mx-auto max-w-5xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8" ref={autoParent}>
       <Header />

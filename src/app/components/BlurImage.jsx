@@ -8,7 +8,6 @@ function cn(...classes) {
 }
 
 export default function BlurImage({ userName, id, text, imgURL }) {
-    console.log("BLURIMAGE rendered", text)
     const [isLoading, setLoading] = useState(true)
     return (
         <a href={`https://twitter.com/${userName}/status/${id}`} className="group block" target="_blank">

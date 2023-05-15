@@ -2,7 +2,6 @@ import { memo } from "react";
 import Image from "next/image";
 
 export default memo(function Header() {
-    console.log("HEADER rendered")
     return (
         <div className="flex mb-6">
             <div className="w-full flex flex-row items-center justify-between">
