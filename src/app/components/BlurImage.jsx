@@ -23,6 +23,7 @@ export default function BlurImage({ userName, id, text, imgURL }) {
                             : 'scale-100 blur-0 grayscale-0'
                     )}
                     onLoadingComplete={() => setLoading(false)}
+                    unoptimized
                 />
             </div>
             <p className="mx-2 mt-4 text-sm text-gray-500" dangerouslySetInnerHTML={{ __html: text }}></p>
