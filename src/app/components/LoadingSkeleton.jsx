@@ -1,6 +1,7 @@
+import { memo } from "react";
 import Image from "next/image";
 
-export default function LoadingSkeleton() {
+export default memo(function LoadingSkeleton() {
     return (
         <a href="/" className="group block animate-pulse" target="_blank">
             <div className="w-full aspect-square bg-gray-200 rounded-lg overflow-hidden relative border border-slate-200">
@@ -14,4 +15,4 @@ export default function LoadingSkeleton() {
             <p className="mt-4 w-full bg-gray-100 h-6 rounded-md"></p>
         </a>
     )
-}
+})
