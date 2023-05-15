@@ -1,9 +1,11 @@
 'use server'
 
 import { Client } from "twitter-api-sdk";
+import { cache } from 'react';
+
 const client = new Client(process.env.BEARER_TOKEN);
 
-export async function getUser(userName) {
+export const getUser = cache(async (userName) => {
     const user = await client.users.findUserByUsername(userName, {
         "user.fields": "profile_image_url",
     })
@@ -11,9 +13,9 @@ export async function getUser(userName) {
         if (user.errors[0]?.title) throw new Error("User not found.")
     }
     return user
-}
+})
 
-export async function getMedia(userId) {
+export const getMedia = cache(async (userId) => {
     const tweets = await client.tweets.usersIdTweets(userId, {
         max_results: 100,
         exclude: "retweets",
@@ -45,4 +47,4 @@ export async function getMedia(userId) {
     }, []);
 
     return result
-}
+})
