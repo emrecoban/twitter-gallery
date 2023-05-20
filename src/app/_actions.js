@@ -19,6 +19,7 @@ export const getUser = cache(async (userName) => {
     }
 
     await redis.set(userName, JSON.stringify(user));
+    //await redis.json.set(userName, "$", JSON.stringify(user))
     return user
 })
 
