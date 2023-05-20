@@ -96,7 +96,7 @@ export default function TwitterGallery() {
                 title="A username can only contain alphanumeric characters (letters A-Z, numbers 0-9) with the exception of underscores"
                 ref={searchBox}
                 value={userName}
-                onChange={(e) => setUserName(e.target.value)}
+                onChange={(e) => setUserName(e.target.value.toLowerCase())}
               />
             </div>
           </div>
