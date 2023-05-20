@@ -15,6 +15,7 @@ With my app, you can effortlessly discover and filter media files shared by Twit
 - **Streamlined Media Display:** I have reimagined the way media files are presented, providing a clean and intuitive interface focused solely on visual content. Say goodbye to clutter and distractions as you browse through beautiful images.
 - **Multiple Columns:** Twitter Gallery optimizes screen space by displaying photos in multiple columns, allowing you to view more images at once. This efficient layout ensures you can explore media files more efficiently and enjoy a seamless browsing experience.
 - **Enhanced Search Functionality:** My app empowers you to search specifically within the media section of Twitter. Easily find images related to your interests or discover captivating photography from your favorite users. Twitter Gallery takes the frustration out of media exploration.
+- **Caching System with Redis:** Faster response time, fewer API requests. Caches frequently accessed data, reducing the need to fetch information from the database or external services repeatedly. Optimizes performance by minimizing response time and API calls.
 
 ## Screenshots
 
@@ -51,6 +52,7 @@ With my app, you can effortlessly discover and filter media files shared by Twit
 - Tailwind CSS
 - React
 - Next.js
+- [@upstash/redis SDK](https://docs.upstash.com/redis/sdks/javascriptsdk/overview)
 - [Twitter API SDK](https://github.com/twitterdev/twitter-api-typescript-sdk)
 - [AutoAnimate](https://github.com/formkit/auto-animate)
 
