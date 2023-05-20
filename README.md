@@ -2,7 +2,7 @@
 
 Twitter Gallery is an **open-source** MIT-licensed [Next.js](https://github.com/vercel/next.js) application that allows you to easily browse and filter media files from Twitter users.
 
-Try it: [twittergallery.vercel.app](https://twittergallery.vercel.app)
+Try it: [twittergallery.emre.run](https://twittergallery.emre.run)
 
 ## The Problem
 
