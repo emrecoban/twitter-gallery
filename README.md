@@ -19,6 +19,7 @@ With my app, you can effortlessly discover and filter media files shared by Twit
 
 ## Screenshots
 
+![search-result-wIcons-for-psychdelicpics](/github_assets/ss3.png)
 ![search-result-for-shouldhavecat](/github_assets/ss1.png)
 ![filter-result-for-changeinvolume](/github_assets/ss2.png)
 
@@ -76,10 +77,12 @@ With my app, you can effortlessly discover and filter media files shared by Twit
   npm install
 ```
 
-4. Don't forget to configure `.env` file. Get your [Twitter API Token](https://developer.twitter.com/en/portal/dashboard):
+4. Don't forget to configure `.env` file. Get your [Twitter API Token](https://developer.twitter.com/en/portal/dashboard) and [Create Redis database](https://console.upstash.com/):
 
 ```bash
 BEARER_TOKEN="{YOUR API TOKEN}"
+UPSTASH_REDIS_REST_URL="{YOUR URL}"
+UPSTASH_REDIS_REST_TOKEN="{YOUR API TOKEN}"
 ```
 
 5. Start the development server:
