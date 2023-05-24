@@ -1,14 +1,16 @@
 'use client'
 
 import { useState, useEffect, useRef } from "react";
-import { getUser, getMedia } from "./_actions";
-import BlurImage from "./components/BlurImage";
-import Header from "./components/Header";
-import LoadingSkeleton from "./components/LoadingSkeleton";
+import { getUser, getMedia } from "../_actions";
+import BlurImage from "../components/BlurImage";
+import Header from "../components/Header";
+import LoadingSkeleton from "../components/LoadingSkeleton";
 import Image from "next/image";
 import autoAnimate from '@formkit/auto-animate'
+//import { useRouter } from 'next/navigation';
 
-export default function TwitterGallery() {
+export default function TwitterGallery({ params }) {
+  //const router = useRouter();
   const autoParent = useRef(null)
   const autoGrid = useRef(null)
   const searchBox = useRef(null)
@@ -21,15 +23,13 @@ export default function TwitterGallery() {
   const [acc, setAcc] = useState(false)
   const [search, setSearch] = useState("")
 
-  const handleForm = async (e) => {
-    e.preventDefault()
-    searchBox.current && searchBox.current.blur()
+  const fetchResult = async (kim) => {
     setSpinner(true)
     !err && setErr(true)
     setResult([])
     setMainresult([])
     try {
-      const account = await getUser(userName)
+      const account = await getUser(kim)
       const result = await getMedia(account.data.id)
       setResult(result)
       setMainresult(result)
@@ -41,6 +41,13 @@ export default function TwitterGallery() {
     } finally {
       setSpinner(false)
     }
+  }
+
+  const handleForm = (e) => {
+    e.preventDefault()
+    searchBox.current && searchBox.current.blur()
+    //router.push(`/${userName}`)
+    fetchResult(userName)
   }
 
   useEffect(() => {
@@ -60,6 +67,13 @@ export default function TwitterGallery() {
       return filteredGallery;
     });
   }, [search])
+
+  useEffect(() => {
+    if (params.username) {
+      setUserName(params?.username[0])
+      fetchResult(params?.username[0])
+    }
+  }, [params.username])
 
   return (
     <div className="mx-auto max-w-5xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8" ref={autoParent}>
