@@ -107,7 +107,10 @@ export default function TwitterGallery() {
         <div className="flex flex-col md:flex-row bg-slate-50 border border-slate-100 shadow-sm rounded-md mb-4 p-3 items-center gap-x-3 gap-y-3 md:gap-y-0">
           <div className="flex flex-row items-center gap-x-2">
             <Image src={acc.data?.profile_image_url} width="48" height="48" alt="user_image" className="rounded-full" />
-            <h3>{acc.data?.name}</h3>
+            <div className="flex flex-col">
+              <h3 className="">{acc.data?.name}</h3>
+              <p className="text-zinc-600 text-sm">{mainresult.length} Items</p>
+            </div>
           </div>
           <div className="w-full flex-1">
             <div className="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-sm bg-white overflow-hidden border border-slate-100">
