@@ -116,6 +116,7 @@ Bug reports, feature requests, and pull requests are welcome. This project is in
 
 ## Changelog
 
+- **[v1.1](https://github.com/emrecoban/twitter-gallery/releases/tag/v1.1):** It now uses Redis database for faster response time, fewer API requests.
 - **[v1.0](https://github.com/emrecoban/twitter-gallery/releases/tag/v1.0):** The first version was born!
 
 ## License
