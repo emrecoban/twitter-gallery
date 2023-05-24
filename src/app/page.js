@@ -104,7 +104,7 @@ export default function TwitterGallery() {
       )}
 
       {(!spinner && mainresult.length != 0) && (
-        <div className="flex flex-row bg-slate-50 border border-slate-100 shadow-sm rounded-md mb-4 p-3 items-center gap-x-3">
+        <div className="flex flex-col md:flex-row bg-slate-50 border border-slate-100 shadow-sm rounded-md mb-4 p-3 items-center gap-x-3 gap-y-3 md:gap-y-0">
           <div className="flex flex-row items-center gap-x-2">
             <Image src={acc.data?.profile_image_url} width="48" height="48" alt="user_image" className="rounded-full" />
             <h3>{acc.data?.name}</h3>
